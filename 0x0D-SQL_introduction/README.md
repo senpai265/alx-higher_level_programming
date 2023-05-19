@@ -1,1 +1,2 @@
-# 0x0D-SQL_introduction \n An Introduction to Databae in Programming
+# 0x0D-SQL_introduction
+An Introduction to Databae in Programming
