@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-# 3-common_elements.py
-# Brennan D Baraban <375@holbertonschool.com>
-
-
 def common_elements(set_1, set_2):
-    """Return a set of common elements in two sets."""
-    return (set_1 & set_2)
+    return set_1 & set_2
+# The intersection set of A and B, denoted “A ∩ B” (read “A inter B”)
+# is the set of elements of A which are also elements of B.
+# We can use set_1.intersection(set_2) too.
