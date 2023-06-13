@@ -1,2 +1,1 @@
-# alx-higher_level_programming
-Directory for the Higher Level Programming
+#0x12-javascript-warm_up
