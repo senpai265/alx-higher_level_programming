@@ -1,23 +1,16 @@
+#!/usr/bin/python3
+"""Python script that lists list 10 commits (from the most recent
+to oldest) of the repository “rails” by the user “rails”."""
+
 import requests
-import sys
+from sys import argv
 
-repository_name = sys.argv[1]
-owner_name = sys.argv[2]
+if __name__ == "__main__":
+    url = "https://api.github.com/repos/{}/{}/commits?per_page=10"\
+          .format(argv[2], argv[1])
 
-url = f"https://api.github.com/repos/{owner_name}/{repository_name}/commits"
-params = {"per_page": 10}
-
-try:
-    response = requests.get(url, params=params)
-    if response.status_code == 200:
-        commits = response.json()
-        for commit in commits:
-            sha = commit["sha"]
-            author_name = commit["commit"]["author"]["name"]
-            print(f"{sha}: {author_name}")
-    else:
-        print(f"Error: {response.status_code} - {response.text}")
-
-except requests.exceptions.RequestException as e:
-    print("An error occurred:", e)
-
+    request = requests.get(url)
+    commits = request.json()
+    for commit in commits:
+        print("{}: {}".format(commit.get("sha"),
+                              commit.get("commit").get("author").get("name")))

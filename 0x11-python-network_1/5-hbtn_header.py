@@ -1,17 +1,10 @@
+#!/usr/bin/python3
+"""Python script that takes in a URL, sends
+a request to the URL and displays the value of
+the variable X-Request-Id in the response header."""
+
 import requests
-import sys
+from sys import argv
 
-url = sys.argv[1]
-
-try:
-    response = requests.get(url)
-    request_id = response.headers.get('X-Request-Id')
-    
-    if request_id:
-        print(f"X-Request-Id: {request_id}")
-    else:
-        print("No X-Request-Id header found in the response")
-        
-except requests.exceptions.RequestException as e:
-    print(f"An error occurred: {e}")
-
+if __name__ == "__main__":
+    print(requests.get(argv[1]).headers.get("X-Request-Id"))

@@ -1,21 +1,18 @@
+#!/usr/bin/python3
+"""Python script that takes in a letter and sends a POST request to
+http://0.0.0.0:5000/search_user with the letter as a parameter."""
+
 import requests
-import sys
+from sys import argv
 
-letter = sys.argv[1] if len(sys.argv) > 1 else ""
-url = "http://0.0.0.0:5000/search_user"
-data = {"q": letter}
-
-try:
-    response = requests.post(url, data=data)
+if __name__ == "__main__":
+    data = {"q": argv[1] if len(argv) > 1 else ""}
+    request = requests.post("http://0.0.0.0:5000/search_user", data=data)
     try:
-        json_data = response.json()
-        if json_data:
-            print("[{}] {}".format(json_data.get("id"), json_data.get("name")))
+        json = request.json()
+        if json:
+            print("[{}] {}".format(json.get("id"), json.get("name")))
         else:
             print("No result")
-    except ValueError:
+    except:
         print("Not a valid JSON")
-
-except requests.exceptions.RequestException as e:
-    print("An error occurred:", e)
-
